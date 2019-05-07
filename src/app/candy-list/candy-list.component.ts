@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { CandyDataService } from '../candy-data.service';
 import { Candy } from '../candy';
+import { EventEmitter } from 'events';
+import { getCanActivateChild } from '@angular/router/src/utils/preactivation';
 
 @Component({
   selector: 'app-candy-list',
@@ -15,7 +17,16 @@ export class CandyListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getCandy();
+  }
+
+  getCandy(){
     this.candyDataService.getCandy().subscribe(c => (this.candies = c));
+    console.log(this.candies);
+  }
+
+  deleteCandy(candy: Candy){
+    this.candyDataService.deleteCandy(candy).subscribe(c => (console.log(c)));
   }
 
 }

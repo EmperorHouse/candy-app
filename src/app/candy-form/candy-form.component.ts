@@ -12,11 +12,14 @@ export class CandyFormComponent implements OnInit {
 
   currentCandy: Candy = new Candy();
 
-  constructor(private candyDataService: CandyDataService) { }
+
+  constructor(private candyDataService: CandyDataService) {
+  }
 
   addCandy(): void {
     this.candyDataService.addCandy(this.currentCandy);
     this.currentCandy = new Candy();
+
   }
 
   ngOnInit() {
